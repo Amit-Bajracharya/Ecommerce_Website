@@ -3,6 +3,7 @@ using Ecommerce_app.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce_app.Migrations
 {
     [DbContext(typeof(myContext))]
-    partial class myContextModelSnapshot : ModelSnapshot
+    [Migration("20260205035037_categoryMigration")]
+    partial class categoryMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,73 +102,6 @@ namespace Ecommerce_app.Migrations
                     b.ToTable("tbl_customer");
                 });
 
-            modelBuilder.Entity("Ecommerce_app.Models.Faqs", b =>
-                {
-                    b.Property<int>("faq_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("faq_id"));
-
-                    b.Property<string>("faq_answer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("faq_question")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("faq_id");
-
-                    b.ToTable("tbl_faq");
-                });
-
-            modelBuilder.Entity("Ecommerce_app.Models.Feedback", b =>
-                {
-                    b.Property<int>("feedback_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("feedback_id"));
-
-                    b.Property<string>("user_message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("user_name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("feedback_id");
-
-                    b.ToTable("tbl_feedback");
-                });
-
-            modelBuilder.Entity("Ecommerce_app.Models.cart", b =>
-                {
-                    b.Property<int>("cart_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("cart_id"));
-
-                    b.Property<int>("cart_status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("cust_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("prod_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("product_quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("cart_id");
-
-                    b.ToTable("tbl_cart");
-                });
-
             modelBuilder.Entity("Ecommerce_app.Models.category", b =>
                 {
                     b.Property<int>("category_id")
@@ -181,38 +117,6 @@ namespace Ecommerce_app.Migrations
                     b.HasKey("category_id");
 
                     b.ToTable("tbl_category");
-                });
-
-            modelBuilder.Entity("Ecommerce_app.Models.product", b =>
-                {
-                    b.Property<int>("product_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("product_id"));
-
-                    b.Property<int>("cat_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("product_description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("product_image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("product_name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("product_price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("product_id");
-
-                    b.ToTable("tbl_product");
                 });
 #pragma warning restore 612, 618
         }
